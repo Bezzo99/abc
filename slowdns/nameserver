@@ -1,15 +1,15 @@
 #!/bin/sh
-REPOS="https:/github.com/Bezzo99/abc/raw/main"
+GIT_CMD="https://raw.github.com/Bezzo99/abc/main/"
 ns_domain_cloudflare() {
-	DOMAIN="thekill-slowdns.biz.id"
-	DOMAIN_PATH=$(cat /etc/xray/domain)
-	SUB=$(tr </dev/urandom -dc a-z0-9 | head -c7)
-	SUB_DOMAIN=${SUB}."thekill-slowdns.biz.id"
+	DOMAIN="vpn-slowdns.biz.id"
+	DAOMIN=$(cat /etc/xray/domain)
+	SUB=$(tr </dev/urandom -dc a-z0-9 | head -c6)
+	SUB_DOMAIN=${SUB}."vpn-slowdns.biz.id"
 	NS_DOMAIN=ns.${SUB_DOMAIN}
-	CF_ID=bezzoperantau9699@gmail.com
-        CF_KEY=0b20eeb1c9762917c3aee1143d5a36b1931c0
+	CF_ID=novanbunder99@gmail.com
+        CF_KEY=77031c93060ae0986506dd4f2f59f4517cb7f
 	set -euo pipefail
-	IP=$(wget -qO- ipv4.icanhazip.com/ip)
+	IP=$(wget -qO- ipinfo.io/ip)
 	echo "Updating DNS NS for ${NS_DOMAIN}..."
 	ZONE=$(
 		curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN}&status=active" \
@@ -31,7 +31,7 @@ ns_domain_cloudflare() {
 			-H "X-Auth-Email: ${CF_ID}" \
 			-H "X-Auth-Key: ${CF_KEY}" \
 			-H "Content-Type: application/json" \
-			--data '{"type":"NS","name":"'${NS_DOMAIN}'","content":"'${DOMAIN_PATH}'","proxied":false}' | jq -r .result.id
+			--data '{"type":"NS","name":"'${NS_DOMAIN}'","content":"'${DAOMIN}'","proxied":false}' | jq -r .result.id
 		)
 	fi
 
@@ -40,7 +40,7 @@ ns_domain_cloudflare() {
 		-H "X-Auth-Email: ${CF_ID}" \
 		-H "X-Auth-Key: ${CF_KEY}" \
 		-H "Content-Type: application/json" \
-		--data '{"type":"NS","name":"'${NS_DOMAIN}'","content":"'${DOMAIN_PATH}'","proxied":false}'
+		--data '{"type":"NS","name":"'${NS_DOMAIN}'","content":"'${DAOMIN}'","proxied":false}'
 	)
 	echo $NS_DOMAIN >/etc/xray/dns
 }
@@ -49,15 +49,13 @@ setup_dnstt() {
 	cd
 	rm -rf *
 	mkdir -p /etc/slowdns
-	wget -O dnstt-server "${REPOS}slowdns/dnstt-server" >/dev/null 2>&1
-	chmod +x dnstt-server >/dev/null 2>&1
-	wget -O dnstt-client "${REPOS}slowdns/dnstt-client" >/dev/null 2>&1
-	chmod +x dnstt-client >/dev/null 2>&1
+	wget -O dnstt-server "${GIT_CMD}slowdns/dnstt-server" && chmod +x dnstt-server >/dev/null 2>&1
+	wget -O dnstt-client "${GIT_CMD}slowdns/dnstt-client" && chmod +x dnstt-client >/dev/null 2>&1
 	./dnstt-server -gen-key -privkey-file server.key -pubkey-file server.pub
 	chmod +x *
 	mv * /etc/slowdns
-	wget -O /etc/systemd/system/client.service "${REPOS}slowdns/client" >/dev/null 2>&1
-	wget -O /etc/systemd/system/server.service "${REPOS}slowdns/server" >/dev/null 2>&1
+	wget -O /etc/systemd/system/client.service "${GIT_CMD}slowdns/client" >/dev/null 2>&1
+	wget -O /etc/systemd/system/server.service "${GIT_CMD}slowdns/server" >/dev/null 2>&1
 	sed -i "s/xxxx/$NS_DOMAIN/g" /etc/systemd/system/client.service 
 	sed -i "s/xxxx/$NS_DOMAIN/g" /etc/systemd/system/server.service 
 }
