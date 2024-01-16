@@ -1,0 +1,78 @@
+#!/bin/bash
+# // Lunatic
+grenbo="\e[92;1m"
+NC='\033[0m'
+BRED='\033[1;31m'
+gray="\e[1;30m"
+Blue="\033[0;34m"
+bblue="\033[1;34m"
+green='\033[0;32m'
+grenbo="\e[92;1m"
+pr="\033[0;95m"
+YELL='\033[0;33m'
+orange='\033[33m'
+mg='\033[35m'
+white='\033[0;37m'
+bwhite='\033[1;37m'
+
+clear
+echo -e " ${NC} ╭══════════════════════════════════════════╮"
+echo -e " ${NC} │$bwhite\033[41m            MENU MANAGER SSH              $NC\033[1;93m│"
+echo -e " ${NC} ╰══════════════════════════════════════════╯"
+echo -e " ${NC} ┌──────────────────────────────────────────┐\033[0m"
+echo -e " ${NC} │ ${NC}[${BRED}01${NC}]${NC} Create SSH Account${NC}"
+echo -e " ${NC} │ ${NC}[${BRED}02${NC}]${NC} Trial SSH Account${NC}"
+echo -e " ${NC} │ ${NC}[${BRED}03${NC}]${NC} Renew SSH Account${NC}"
+echo -e " ${NC} │ ${NC}[${BRED}04${NC}]${NC} Check login SSH Account${NC}"
+echo -e " ${NC} │ ${NC}[${BRED}05${NC}]${NC} List Member${NC}"
+echo -e " ${NC} │ ${NC}[${BRED}06${NC}]${NC} Delete Acount SSH${NC}"
+echo -e " ${NC} │ ${NC}[${BRED}07${NC}]${NC} Delete User Expired${NC}"
+echo -e " ${NC} │ ${NC}[${BRED}08${NC}]${NC} Auto Killer SSH${NC}"
+echo -e " ${NC} │ ${NC}[${BRED}09${NC}]${NC} Check User MultiLogin${NC}"
+echo -e " ${NC} │ ${NC}[${BRED}10${NC}]${NC} Lock User SSH${NC}"
+echo -e " ${NC} │ ${NC}[${BRED}11${NC}]${NC} Unlock User SSH${NC}"
+echo -e " ${NC} │ ${NC}[${BRED}12${NC}]${NC} ComeBack Menu${NC}"
+echo -e " ${NC} └──────────────────────────────────────────┘\033[0m"
+echo -e ""
+read -p "  Select From Options [ 1-11 / 12 ] : " menu
+echo -e ""
+case $menu in
+1)
+    addssh
+    ;;
+2)
+    trial
+    ;;
+3)
+    renewssh
+    ;;
+4)
+    cekssh
+    ;;
+5)
+    member
+    ;;
+6)
+    delssh
+    ;;
+7)
+    delexp
+    ;;
+8)
+    autokill
+    ;;
+9)
+    ceklim
+    ;;
+10) 
+    clear
+    lock
+   ;;
+11)
+    clear
+    unlock
+    ;;
+*)
+    menu
+    ;;
+esac
