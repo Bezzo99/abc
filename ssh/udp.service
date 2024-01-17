@@ -4,8 +4,8 @@ Description=UDP HC GEOVPN
 [Service]
 User=root
 Type=simple
-ExecStart=/etc/geovpn/udp server
-WorkingDirectory=/etc/geovpn/
+ExecStart=/etc/novan/udp server
+WorkingDirectory=/etc/novan/
 Restart=always
 RestartSec=2s
 
