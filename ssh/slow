@@ -56,11 +56,11 @@ export IP=$( curl -s https://ipinfo.io/ip/ )
 cd
 function SAMAWA(){
 clear
-echo -e " ${BLUE}┌─────────────────────────────────────────────────────┐${NC}"
-echo -e " ${BLUE}│${NC}                  SLOWDNS VPN SCRIPT                ${BLUE} │${NC}"
-echo -e " ${BLUE}│${NC}                   www.killz.my.id                  ${BLUE} │${NC}"
-echo -e " ${BLUE}│${NC} TELEGRAM CH ${GREEN}@vpnseduluran9699${NC} ADMIN ${GREEN}@Novanthekillz${NC} ${BLUE} │${NC}"
-echo -e " ${BLUE}└─────────────────────────────────────────────────────┘${NC}"
+echo " ${BLUE}┌─────────────────────────────────────────────────────┐${NC}"
+echo " ${BLUE}│${NC}                  SLOWDNS VPN SCRIPT                ${BLUE} │${NC}"
+echo " ${BLUE}│${NC}                   www.killz.my.id                  ${BLUE} │${NC}"
+echo " ${BLUE}│${NC} TELEGRAM CH ${GREEN}@vpnseduluran9699${NC} ADMIN ${GREEN}@Novanthekillz${NC} ${BLUE} │${NC}"
+echo " ${BLUE}└─────────────────────────────────────────────────────┘${NC}"
 }
 
 clear
@@ -125,7 +125,7 @@ RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZonaPadaClo
      -H "Content-Type: application/json" \
      --data '{"type":"NS","name":"'ns.${SUB_DOMAIN}'","content":"'${SUB_DOMAIN}.${Domain_Hasil_Random}'","ttl":0,"proxied":false}')
 
-echo -e "ns.$SUB_DOMAIN.$Domain_Hasil_Random" > /etc/xray/dns
+echo "ns.$SUB_DOMAIN.$Domain_Hasil_Random" > /etc/xray/dns
 }
 
 clear
@@ -203,9 +203,9 @@ RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZonaPadaClo
      --data '{"type":"NS","name":"'ns.${SUB_DOMAIN}'","content":"'${SUB_DOMAIN}.${Domain_Hasil_Random}'","ttl":0,"proxied":false}')
 
 # // Input Result To VPS
-echo -e "$SUB_DOMAIN.$Domain_Hasil_Random" > /etc/xray/domain
-echo -e "ns.$SUB_DOMAIN.$Domain_Hasil_Random" > /etc/xray/dns
-echo -e "$SUB_DOMAIN.$Domain_Hasil_Random" > /root/domain
+echo "$SUB_DOMAIN.$Domain_Hasil_Random" > /etc/xray/domain
+echo "ns.$SUB_DOMAIN.$Domain_Hasil_Random" > /etc/xray/dns
+echo "$SUB_DOMAIN.$Domain_Hasil_Random" > /root/domain
 domain="${SUB_DOMAIN}.${Domain_Hasil_Random}"
 
 # // Making Certificate | GEO PROJECT
@@ -252,8 +252,8 @@ if [[ $domain == "" ]]; then
 fi
 
 # // Input Domain To VPS
-echo -e "$domain" > /etc/xray/domain
-echo -e "$domain" > /root/domain
+echo "$domain" > /etc/xray/domain
+echo "$domain" > /root/domain
 Domen_DNS
 # // Making Certificate | GEO PROJECT
 clear
@@ -312,8 +312,8 @@ clear
 instal_script
     systemctl restart haproxy
     systemctl restart nginx
-clear
-echo -e ""
-echo -e ""
+    rm /root/slow
+echo ""
+echo ""
 figlet GANTENG | lolcat
-echo -e ""
+echo "
